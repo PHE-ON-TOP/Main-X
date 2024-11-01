@@ -1,41 +1,96 @@
 <!DOCTYPE html>
-<html lang="th">
+<html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Countdown</title>
+    <title>PHE Website</title>
     <style>
-        body {
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(to bottom, #1a1a1a, #000000);
+            color: #179fc9;
             font-family: Arial, sans-serif;
+            font-size: 17px;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            background: linear-gradient(135deg, #1a1a1a, #179fc9);
-            background-size: 400% 400%;
-            animation: gradientBG 8s ease infinite;
+            line-height: 1.6;
+            overflow: hidden;
             user-select: none;
-            pointer-events: none;
         }
 
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        .content {
+            background-color: rgba(255, 255, 255, 0.025);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(23, 159, 201, 0.8);
+            max-width: 650px;
+            width: 100%;
+            box-sizing: border-box;
+            text-align: center;
         }
 
-        #countdown {
-            font-size: 2rem;
-            color: rgb(255, 255, 255);
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
-            pointer-events: auto;
+        .welcome {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 35px;
+            margin: 0;
+        }
+
+        p, ul {
+            font-size: 19px;
+            text-align: center;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 10px 0;
+        }
+
+        a {
+            color: white;
+            text-decoration: none;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        a:hover {
+            color: #179fc9;
+            text-decoration: none;
+        }
+
+        a:active {
+            color: #585858;
+        }
+
+        .orange-link {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .orange-link:hover {
+            color: rgb(23, 159, 201, 0.8);
+        }
+
+        .large-link {
+            font-size: 30px;
         }
 
         .circle {
             position: absolute;
             border-radius: 50%;
             background: transparent;
-            border: 8px solid #179fc9;
+            border: 8px solid rgba(23, 159, 201, 0.8);
             transform: scale(0);
             animation: expandFade 0.5s ease-out forwards;
             pointer-events: none;
@@ -48,36 +103,73 @@
             }
         }
 
+        @media screen and (max-width: 1080px) {
+            h1 {
+                font-size: 34px;
+            }
+
+            p, ul {
+                font-size: 18px;
+            }
+
+            li {
+                margin: 9px 0;
+            }
+
+            .content {
+                max-width: 90%;
+                max-width: 650px;
+                padding: 15px;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            h1 {
+                font-size: 30px;
+            }
+
+            p, ul {
+                font-size: 16px;
+            }
+
+            li {
+                margin: 8px 0;
+            }
+
+            .content {
+                max-width: 95%;
+                padding: 10px;
+                max-width: 650px;
+                flex-direction: column;
+            }
+        }
     </style>
 </head>
 <body>
-
-    <div id="countdown"></div>
+    <div class="welcome">
+        <h1>Welcome to ??? Website</h1>
+    </div>
+    <div class="content">
+        <h1>Who?</h1>
+        <ul>
+            <li><a href="https://neko-phe.vercel.app/" onclick="fadeLink(this)" class="orange-link large-link">Im__neko</a></li>
+            <li><a href="https://saiz-phe.vercel.app/" onclick="fadeLink(this)" class="orange-link large-link">saizneko_2</a></li>
+            <li><a href="https://kermitmeji-phe.vercel.app/" onclick="fadeLink(this)" class="orange-link large-link">_kermitmeji_</a></li>
+            <li><a href="https://x-countdown-phe.vercel.app/" onclick="fadeLink(this)" class="orange-link large-link">Coming soon..</a></li>
+        </ul>
+    </div>
+    <div class="welcome">
+        <h1>Update Zone</h1>
+    </div>
+        <div class="content">
+        <h1>Update</h1>
+        <ul>
+            <li><a href="" onclick="fadeLink(this)" class="orange-link large-link">11/01 | 22:30</a></li>
+            <li><a href="https://kermitmeji-phe.vercel.app/" onclick="fadeLink(this)" class="orange-link large-link">New | 9 pictures of _kermitmeji_</a></li>
+        </ul>
+    </div>
 
     <script>
-        const targetDate = new Date('November 2, 2024 20:00:00').getTime();
-
-        const countdownInterval = setInterval(function() {
-            const now = new Date().getTime();
-            const distance = targetDate - now;
-
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            document.getElementById("countdown").innerHTML = 
-                days + " d " + hours + " h " + minutes + " m " + seconds + " s ";
-
-            if (distance < 0) {
-                clearInterval(countdownInterval);
-                document.getElementById("countdown").innerHTML = "Pls wait..";
-                setTimeout(function() {
-                    window.location.href = "";
-                }, 1000);
-            }
-        }, 1000);
-
         document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
         });
@@ -104,13 +196,9 @@
             circle.style.left = event.pageX - size / 2 + 'px';
             circle.style.top = event.pageY - size / 2 + 'px';
             setTimeout(() => {
-                document.body.removeChild(circle);
+                circle.remove();
             }, 500);
         });
-
-        function fadeLink(link) {
-            link.classList.add('clicked');
-        }
     </script>
 </body>
 </html>
