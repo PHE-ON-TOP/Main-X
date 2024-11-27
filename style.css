@@ -78,10 +78,10 @@ body {
     justify-content: center;
     align-items: center;
     height: auto;
-    margin: 20px auto;
+    margin: auto;
     background-color: #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 80%;
+    width: 100%;
     max-width: auto;
     position: relative;
     overflow: hidden;
