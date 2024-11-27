@@ -1,109 +1,73 @@
-* {
+body {
+  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  background-color: #f4f4f4;
+  text-align: center;
 }
 
-body {
-  min-height: 100vh;
+.dropdown {
+  margin: 20px;
+}
+
+.image-container {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #000;
-  color: #fff;
-}
-
-.content {
+  height: 500px;
+  margin: 20px auto;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  max-width: 500px;
   position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
+  overflow: hidden;
 }
 
-.content h1 {
-  font-family: "Press Start 2p", system-ui;
-  font-size: 7rem;
-  animation: animate 5s linear infinite;
+.image-container img {
+  width: 100%;
+  height: 80%;
+  object-fit: contain;
+  display: none;
 }
 
-.content h2 {
-  font-family: "Russo One", sans-serif;
-  font-size: 2rem;
+.image-container img.active {
+  display: block;
 }
 
-.content p {
-  font-family: "Russo One", sans-serif;
-  font-weight: 300;
-  text-align: center;
-  width: 50%;
+.dropdown select {
+  padding: 10px;
+  font-size: 16px;
 }
 
-.content .action {
-  width: 50%;
-  display: flex;
-  gap: 1rem;
+.button-container {
+  margin-top: 20px;
 }
 
-.content .action button {
+.button-container button {
+  padding: 10px 20px;
+  font-size: 16px;
+  margin: 0 10px;
+  border: none;
+  background-color: #007BFF;
+  color: white;
   cursor: pointer;
-  width: 50%;
-  padding: 1rem;
-  background: #000;
-  color: #fff;
-  font-family: "Russo One", sans-serif;
-  font-weight: 400;
-  border: 3px solid #333;
-  border-radius: 8px;
-  transition: 0.3s linear;
+  border-radius: 5px;
 }
 
-.content .action button:hover {
-  background-color: #fff;
-  color: #000;
-  transition: 0.3s linear;
+.button-container button:hover {
+  background-color: #0056b3;
 }
 
-.content .action button:nth-child(2) {
-  background-color: #fff;
-  color: #000;
+.all-images-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
 }
 
-.content img {
-  position: absolute;
-  bottom: 3.2rem;
-  left: 35%;
-  width: 50px;
-  height: 50px;
-}
-
-@keyframes animate {
-  0%,
-  18%,
-  20%,
-  50.1%,
-  60%,
-  65.1%,
-  80%,
-  90.1%,
-  92% {
-    color: #202020;
-    text-shadow: none;
-  }
-
-  18.1%,
-  20.1%,
-  30%,
-  50%,
-  60.1%,
-  65%,
-  80.1%,
-  90%,
-  92.1%,
-  100% {
-    color: white;
-    text-shadow: 0 0 2px #ffffff, 0 0 5px #ffffff, 0 0 10px #ffffff,
-      0 0 20px #ffffff, 0 0 40px #ffffff;
-  }
+.all-images-container img {
+  max-width: 500px;
+  max-height: 500px;
+  margin: 10px;
 }
