@@ -71,3 +71,26 @@ body {
   max-height: 500px;
   margin: 10px;
 }
+
+@media screen and (max-width: 680px) {
+  .image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    margin: 20px auto;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: auto;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .image-container img {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+    display: none;
+  }
+}
