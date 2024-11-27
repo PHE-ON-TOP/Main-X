@@ -1,204 +1,23 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>PHE Website</title>
-    <style>
-        html, body {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            width: 100%;
-            background: linear-gradient(to bottom, #1a1a1a, #000000);
-            color: #179fc9;
-            font-family: Arial, sans-serif;
-            font-size: 17px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            line-height: 1.6;
-            overflow: hidden;
-            user-select: none;
-        }
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        .content {
-            background-color: rgba(255, 255, 255, 0.025);
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(23, 159, 201, 0.8);
-            max-width: 650px;
-            width: 100%;
-            box-sizing: border-box;
-            text-align: center;
-        }
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Russo+One&display=swap"
+      rel="stylesheet"
+    />
 
-        .welcome {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        h1 {
-            font-size: 35px;
-            margin: 0;
-        }
-
-        p, ul {
-            font-size: 19px;
-            text-align: center;
-            margin: 0 auto;
-            padding: 0;
-        }
-
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        li {
-            margin: 10px 0;
-        }
-
-        a {
-            color: white;
-            text-decoration: none;
-            transition: transform 0.3s ease, color 0.3s ease;
-        }
-
-        a:hover {
-            color: #179fc9;
-            text-decoration: none;
-        }
-
-        a:active {
-            color: #585858;
-        }
-
-        .orange-link {
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        .orange-link:hover {
-            color: rgb(23, 159, 201, 0.8);
-        }
-
-        .large-link {
-            font-size: 30px;
-        }
-
-        .circle {
-            position: absolute;
-            border-radius: 50%;
-            background: transparent;
-            border: 8px solid rgba(23, 159, 201, 0.8);
-            transform: scale(0);
-            animation: expandFade 0.5s ease-out forwards;
-            pointer-events: none;
-        }
-
-        @keyframes expandFade {
-            to {
-                transform: scale(2);
-                opacity: 0;
-            }
-        }
-
-        @media screen and (max-width: 1080px) {
-            h1 {
-                font-size: 34px;
-            }
-
-            p, ul {
-                font-size: 18px;
-            }
-
-            li {
-                margin: 9px 0;
-            }
-
-            .content {
-                max-width: 90%;
-                max-width: 650px;
-                padding: 15px;
-            }
-        }
-
-        @media screen and (max-width: 600px) {
-            h1 {
-                font-size: 30px;
-            }
-
-            p, ul {
-                font-size: 16px;
-            }
-
-            li {
-                margin: 8px 0;
-            }
-
-            .content {
-                max-width: 95%;
-                padding: 10px;
-                max-width: 650px;
-                flex-direction: column;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="welcome">
-        <h1>Welcome to ??? Website</h1>
-    </div>
+    <link rel="stylesheet" href="style.css" />
+    <title>Not Found</title>
+  </head>
+  <body>
     <div class="content">
-        <h1>Who?</h1>
-        <ul>
-            <li><a href="https://neko-phe.vercel.app/" onclick="fadeLink(this)" class="orange-link large-link">Im__neko</a></li>
-            <li><a href="https://saiz-phe.vercel.app/" onclick="fadeLink(this)" class="orange-link large-link">saizneko_2</a></li>
-            <li><a href="https://kermitmeji-phe.vercel.app/" onclick="fadeLink(this)" class="orange-link large-link">_kermitmeji_</a></li>
-            <li><a href="https://yuki-phe.vercel.app/" onclick="fadeLink(this)" class="orange-link large-link">yukidoll_gal</a></li>
-        </ul>
+      <h1>404</h1>
+      <h2>PAGE NOT FOUND</h2>
     </div>
-    <div class="welcome">
-        <h1>Update Zone</h1>
-    </div>
-        <div class="content">
-        <h1>Update</h1>
-        <ul>
-            <li><a href="" onclick="fadeLink(this)" class="orange-link large-link">11/01 | 22:30</a></li>
-            <li><a href="https://kermitmeji-phe.vercel.app/" onclick="fadeLink(this)" class="orange-link large-link">New | 15 pictures of yukidoll_gal</a></li>
-        </ul>
-    </div>
-
-    <script>
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-        });
-
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I')) {
-                e.preventDefault();
-            }
-        });
-
-        document.addEventListener('mousedown', function(e) {
-            if (e.button === 0) {
-                e.preventDefault();
-            }
-        });
-
-        document.addEventListener('click', (event) => {
-            const circle = document.createElement('div');
-            circle.className = 'circle';
-            document.body.appendChild(circle);
-            const size = Math.random() * 50 + 50;
-            circle.style.width = size + 'px';
-            circle.style.height = size + 'px';
-            circle.style.left = event.pageX - size / 2 + 'px';
-            circle.style.top = event.pageY - size / 2 + 'px';
-            setTimeout(() => {
-                circle.remove();
-            }, 500);
-        });
-    </script>
-</body>
+  </body>
 </html>
