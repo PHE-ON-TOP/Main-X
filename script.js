@@ -1,86 +1,89 @@
-const dropdown = document.getElementById('zone-select');
-const imageContainer = document.getElementById('image-container');
-const prevBtn = document.getElementById('prev-btn');
-const nextBtn = document.getElementById('next-btn');
-const viewAllBtn = document.getElementById('view-all-btn');
-const allImagesContainer = document.getElementById('all-images-container');
+const dropdown = document.getElementById("zone-select");
+const imageContainer = document.getElementById("image-container");
+const prevBtn = document.getElementById("prev-btn");
+const nextBtn = document.getElementById("next-btn");
+const viewAllBtn = document.getElementById("view-all-btn");
+const allImagesContainer = document.getElementById("all-images-container");
 
-let currentZone = 'zone1';
+let currentZone = "";
 let currentIndex = 0;
 let isViewingAll = false;
+let images = [];
+
+async function loadImages(zone) {
+  try {
+    const response = await fetch(zone);
+    const text = await response.text();
+    const imageUrls = text.trim().split("\n");
+    return imageUrls;
+  } catch (error) {
+    console.error("Error loading images:", error);
+    return [];
+  }
+}
 
 function updateImages() {
-  const allImages = document.querySelectorAll('img');
-  allImages.forEach((img) => {
-    img.classList.remove('active');
-  });
+  imageContainer.innerHTML = "";
 
-  const selectedImages = document.querySelectorAll(`.${currentZone}`);
-  selectedImages.forEach((img, index) => {
-    img.classList.toggle('active', index === currentIndex);
+  images.forEach((src, index) => {
+    const img = document.createElement("img");
+    img.src = src;
+    img.classList.toggle("active", index === currentIndex);
+    imageContainer.appendChild(img);
   });
 }
 
 function showAllImages() {
-  allImagesContainer.innerHTML = '';
+  allImagesContainer.innerHTML = "";
 
-  const allImages = document.querySelectorAll(`.${currentZone}`);
+  images.forEach((src) => {
+    const img = document.createElement("img");
+    img.src = src;
+    allImagesContainer.appendChild(img);
+  });
 
-  if (allImages.length > 0) {
-    allImages.forEach((img) => {
-      const clonedImg = img.cloneNode();
-      allImagesContainer.appendChild(clonedImg);
-    });
-  }
-
-  imageContainer.style.display = 'none';
-  allImagesContainer.style.display = 'flex';
+  imageContainer.style.display = "none";
+  allImagesContainer.style.display = "flex";
 }
 
 function showSingleImage() {
-  const selectedImages = document.querySelectorAll(`.${currentZone}`);
-  selectedImages.forEach((img, index) => {
-    img.classList.toggle('active', index === currentIndex);
-  });
-
-  imageContainer.style.display = 'flex';
-  allImagesContainer.style.display = 'none';
+  updateImages();
+  imageContainer.style.display = "flex";
+  allImagesContainer.style.display = "none";
 }
 
 function toggleViewButton() {
   if (isViewingAll) {
-    viewAllBtn.textContent = 'ดูทั้งหมด';
+    viewAllBtn.textContent = "ดูทั้งหมด";
     showSingleImage();
   } else {
-    viewAllBtn.textContent = 'ดูรูปเดียว';
+    viewAllBtn.textContent = "ดูรูปเดียว";
     showAllImages();
   }
   isViewingAll = !isViewingAll;
 }
 
-dropdown.addEventListener('change', (e) => {
+dropdown.addEventListener("change", async (e) => {
   currentZone = e.target.value;
   currentIndex = 0;
-  updateImages();
-  if (isViewingAll) {
-    toggleViewButton();
-  }
+  images = await loadImages(currentZone);
+  isViewingAll = false;
+  viewAllBtn.textContent = "ดูทั้งหมด";
+  showSingleImage();
 });
 
-prevBtn.addEventListener('click', () => {
-  const images = document.querySelectorAll(`.${currentZone}`);
+prevBtn.addEventListener("click", () => {
   currentIndex = (currentIndex - 1 + images.length) % images.length;
   updateImages();
 });
 
-nextBtn.addEventListener('click', () => {
-  const images = document.querySelectorAll(`.${currentZone}`);
+nextBtn.addEventListener("click", () => {
   currentIndex = (currentIndex + 1) % images.length;
   updateImages();
 });
 
-viewAllBtn.addEventListener('click', () => {
+viewAllBtn.addEventListener("click", () => {
   toggleViewButton();
 });
 
-updateImages();
+dropdown.dispatchEvent(new Event("change"));
