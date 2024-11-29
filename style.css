@@ -22,6 +22,7 @@ body {
   max-width: 500px;
   position: relative;
   overflow: hidden;
+  border-radius: 5px;
 }
 
 .image-container img {
@@ -29,6 +30,7 @@ body {
   height: 80%;
   object-fit: contain;
   display: none;
+  border-radius: 5px;
 }
 
 .image-container img.active {
@@ -70,6 +72,7 @@ body {
   max-width: 500px;
   max-height: 500px;
   margin: 10px;
+  border-radius: 5px;
 }
 
 @media screen and (max-width: 680px) {
