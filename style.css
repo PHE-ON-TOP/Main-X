@@ -11,6 +11,10 @@ body {
   margin: 20px;
 }
 
+.red {
+  color: rgb(182, 13, 13);
+}
+
 #zone-select {
   background-color: #1f1f1f;
   color: #fff;
