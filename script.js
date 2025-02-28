@@ -1,3 +1,19 @@
+document.addEventListener('contextmenu', function(e) {
+  e.preventDefault();
+});
+
+document.addEventListener('mousedown', function(e) {
+  if (e.button === 0) {
+      e.preventDefault();
+  }
+});
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I')) {
+      e.preventDefault();
+  }
+});
+
 const dropdown = document.getElementById("zone-select");
 const imageContainer = document.getElementById("image-container");
 const prevBtn = document.getElementById("prev-btn");
@@ -53,12 +69,16 @@ function showSingleImage() {
 }
 
 function toggleViewButton() {
+  const infoSections = document.querySelectorAll("body > div:not(.dropdown):not(.image-container):not(.button-container):not(.all-images-container)");
+
   if (isViewingAll) {
     viewAllBtn.textContent = "ดูทั้งหมด";
     showSingleImage();
+    infoSections.forEach(section => section.style.display = "block");
   } else {
     viewAllBtn.textContent = "ดูรูปเดียว";
     showAllImages();
+    infoSections.forEach(section => section.style.display = "none");
   }
   isViewingAll = !isViewingAll;
 }
@@ -84,6 +104,10 @@ nextBtn.addEventListener("click", () => {
 
 viewAllBtn.addEventListener("click", () => {
   toggleViewButton();
+});
+
+document.getElementById("scroll-to-top").addEventListener("click", function () {
+  window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
 dropdown.dispatchEvent(new Event("change"));
