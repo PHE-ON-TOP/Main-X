@@ -110,7 +110,7 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 2.5px;
+  width: 3.5px;
 }
 
 ::-webkit-scrollbar-track {
@@ -118,10 +118,6 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #000000, #ffffff, #000000);
+  background: linear-gradient(to bottom, #b9151552, #b91515, #b9151552);
   transition: background-color 0.3s;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to bottom, #000000, #ffffff, #000000);
 }
