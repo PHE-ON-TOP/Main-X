@@ -1,3 +1,29 @@
+document.addEventListener("keyup", function (e) {
+  if (e.key === "PrintScreen") {
+      document.body.classList.add("screenshot-block");
+      navigator.clipboard.writeText("");
+      setTimeout(() => {
+          document.body.classList.remove("screenshot-block");
+      }, 1000);
+  }
+});
+
+document.addEventListener("visibilitychange", function () {
+  if (document.hidden) {
+      document.body.classList.add("screenshot-block");
+  } else {
+      document.body.classList.remove("screenshot-block");
+  }
+});
+
+document.addEventListener("blur", function() {
+  document.body.classList.add("screenshot-block");
+});
+
+document.addEventListener("focus", function() {
+  document.body.classList.remove("screenshot-block");
+});
+
 document.addEventListener('contextmenu', function(e) {
   e.preventDefault();
 });
