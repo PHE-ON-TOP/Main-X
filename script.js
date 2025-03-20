@@ -1,3 +1,24 @@
+function blockScreenshot() {
+  document.body.classList.add("screenshot-block");
+  setTimeout(() => {
+      document.body.classList.remove("screenshot-block");
+  }, 2000);
+}
+
+document.addEventListener("visibilitychange", function () {
+  if (document.hidden) {
+      blockScreenshot();
+  }
+});
+
+let lastRatio = window.devicePixelRatio;
+setInterval(() => {
+  if (window.devicePixelRatio !== lastRatio) {
+      blockScreenshot();
+      lastRatio = window.devicePixelRatio;
+  }
+}, 500);
+
 document.addEventListener("keyup", function (e) {
   if (e.key === "PrintScreen") {
       document.body.classList.add("screenshot-block");
